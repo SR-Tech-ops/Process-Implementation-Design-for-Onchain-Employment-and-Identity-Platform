@@ -1,13 +1,9 @@
 pragma solidity ^0.4.15;
 
-import "./Security.sol";  // Import the Security contract
 
 /// @title Multisignature wallet - Allows multiple parties to agree on transactions before execution.
 /// @author Stefan George - <stefan.george@consensys.net>
 contract MultiSigWallet {
-     Security public security;  // Reference to the Security contract
-
-    
 
     /*
      *  Events
@@ -158,12 +154,6 @@ struct Payment {
         _;
     }
 
-     // Modifier to ensure only authorized addresses can perform the action
-    modifier onlyAuthorized() {
-        require(security.isAuthorized(msg.sender), "Not authorized");
-        _;
-    }
-
     mapping(uint256 => Employee) public employeeList;
     uint256 private totalYearlyUSDSalary;
     uint256 public employeeCount = 0;
@@ -176,7 +166,6 @@ struct Payment {
         return employeeList[_employeeID].id != address(0x0);
     }
 
-    
     
 
     function MultiSigWallet(address[] _owners, uint _required)
@@ -191,9 +180,7 @@ struct Payment {
         required = _required;
     }
 
-
-
-
+    
     function addOwner(address owner)
         public
         onlyWallet
