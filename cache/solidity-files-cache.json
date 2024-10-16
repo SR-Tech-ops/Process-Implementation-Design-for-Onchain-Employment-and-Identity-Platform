@@ -219,6 +219,41 @@
       "artifacts": [
         "SecurityContract"
       ]
+    },
+    "/workspaces/Process-Implementation-Design-for-Onchain-Employment-and-Identity-Platform/contracts/BiometricHash.sol": {
+      "lastModificationDate": 1729077566497,
+      "contentHash": "727b1a0dfd1316c607cd62c8f0552169",
+      "sourceName": "contracts/BiometricHash.sol",
+      "solcConfig": {
+        "version": "0.4.25",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.4.0"
+      ],
+      "artifacts": [
+        "BiometricStorage"
+      ]
     }
   }
 }
