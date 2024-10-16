@@ -9,6 +9,7 @@ import PreviousChats from './pages/PreviousChats';
 import Navbar from './Navbar';
 import Home from './pages/Home';  // Main landing page
 import JobPosting from './JobPosting'; // Job Posting component
+import BiometricTest from './components/BiometricTest'; // Biometric Test component
 import './App.css';  // Import the App CSS for the background theme
 
 function App() {
@@ -16,6 +17,19 @@ function App() {
 
   const handleLogin = () => {
     setIsAuthenticated(true);
+  };
+
+  const renderWithRestriction = (Component, props) => {
+    return isAuthenticated ? (
+      <Component {...props} />
+    ) : (
+      <div className="read-only-overlay">
+        <p className="overlay-message">
+          You are viewing the site in read-only mode. Please log in or sign up to interact.
+        </p>
+        <Component {...props} readOnly />
+      </div>
+    );
   };
 
   return (
@@ -34,19 +48,28 @@ function App() {
           {/* Verification (Login) page */}
           <Route path="/verify" element={<Verification onLogin={handleLogin} />} />
 
+          {/* Biometric Test page */}
+          <Route path="/biometric-test" element={<BiometricTest />} />
+
           {/* Job posting page */}
-          <Route path="/post-job" element={isAuthenticated ? <JobPosting wallet={window.ethereum} onJobPosted={() => {}} /> : <Navigate to="/" />} />
+          <Route
+            path="/post-job"
+            element={renderWithRestriction(JobPosting, { wallet: window.ethereum, onJobPosted: () => {} })}
+          />
 
           {/* Job Listings page */}
-          <Route path="/job-listings" element={isAuthenticated ? <JobListings wallet={window.ethereum} /> : <Navigate to="/" />} />
+          <Route
+            path="/job-listings"
+            element={renderWithRestriction(JobListings, { wallet: window.ethereum })}
+          />
 
-          {/* Protected routes - accessible only after authentication */}
-          <Route path="/job/:jobId" element={isAuthenticated ? <JobDetails /> : <Navigate to="/" />} />
-          <Route path="/chat/:jobId" element={isAuthenticated ? <Chat /> : <Navigate to="/" />} />
-          <Route path="/previous-chats" element={isAuthenticated ? <PreviousChats /> : <Navigate to="/" />} />
+          {/* Job details, chat, and previous chats */}
+          <Route path="/job/:jobId" element={renderWithRestriction(JobDetails)} />
+          <Route path="/chat/:jobId" element={renderWithRestriction(Chat)} />
+          <Route path="/previous-chats" element={renderWithRestriction(PreviousChats)} />
 
           {/* Fallback route */}
-          <Route path="*" element={<Navigate to={isAuthenticated ? "/job-listings" : "/"} />} />
+          <Route path="*" element={<Navigate to="/" />} />
         </Routes>
       </div>
     </Router>

@@ -1,6 +1,41 @@
 {
   "_format": "hh-sol-cache-2",
   "files": {
+    "/workspaces/Process-Implementation-Design-for-Onchain-Employment-and-Identity-Platform/contracts/BiometricStorage.sol": {
+      "lastModificationDate": 1729116909994,
+      "contentHash": "727b1a0dfd1316c607cd62c8f0552169",
+      "sourceName": "contracts/BiometricStorage.sol",
+      "solcConfig": {
+        "version": "0.4.25",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.4.0"
+      ],
+      "artifacts": [
+        "BiometricStorage"
+      ]
+    },
     "/workspaces/Process-Implementation-Design-for-Onchain-Employment-and-Identity-Platform/contracts/Factory.sol": {
       "lastModificationDate": 1729006949740,
       "contentHash": "6c2db1812b8326baad8da224f7b9e298",
@@ -75,7 +110,7 @@
       ]
     },
     "/workspaces/Process-Implementation-Design-for-Onchain-Employment-and-Identity-Platform/contracts/Factory_multisig.sol": {
-      "lastModificationDate": 1729006949740,
+      "lastModificationDate": 1729009898252,
       "contentHash": "411df8f1f4451c0e4ee640d310500396",
       "sourceName": "contracts/Factory_multisig.sol",
       "solcConfig": {
@@ -218,41 +253,6 @@
       ],
       "artifacts": [
         "SecurityContract"
-      ]
-    },
-    "/workspaces/Process-Implementation-Design-for-Onchain-Employment-and-Identity-Platform/contracts/BiometricHash.sol": {
-      "lastModificationDate": 1729077566497,
-      "contentHash": "727b1a0dfd1316c607cd62c8f0552169",
-      "sourceName": "contracts/BiometricHash.sol",
-      "solcConfig": {
-        "version": "0.4.25",
-        "settings": {
-          "optimizer": {
-            "enabled": false,
-            "runs": 200
-          },
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [],
-      "versionPragmas": [
-        "^0.4.0"
-      ],
-      "artifacts": [
-        "BiometricStorage"
       ]
     }
   }

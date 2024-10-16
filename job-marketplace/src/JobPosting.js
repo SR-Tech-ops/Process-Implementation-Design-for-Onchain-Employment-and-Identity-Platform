@@ -4,7 +4,7 @@ import abimultisigfac from './Factory_multisig.json';
 import { useNavigate } from 'react-router-dom';
 import './job.css';  // Importing CSS file for styling
 
-function JobPosting({ wallet, onJobPosted }) {
+function JobPosting({ wallet, onJobPosted , readOnly  }) {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [milestones, setMilestones] = useState("");
@@ -41,21 +41,28 @@ function JobPosting({ wallet, onJobPosted }) {
   }
 
   return (
-    <div className="container">
-      <form onSubmit={handleSubmit}>
-        <h2>Post a New Job</h2>
-        <label>Job Title:</label>
-        <input value={title} onChange={(e) => setTitle(e.target.value)} />
-        <label>Description:</label>
-        <textarea value={description} onChange={(e) => setDescription(e.target.value)} />
-        <label>Milestones:</label>
-        <textarea value={milestones} onChange={(e) => setMilestones(e.target.value)} />
-        <label>Payment:</label>
-        <input value={payment} onChange={(e) => setPayment(e.target.value)} />
 
-        <button type="submit">Post Job</button>
-      </form>
-    </div>
+    <><div>
+      {readOnly ? (
+        <p>You are in read-only mode. Please log in to post a job.</p>
+      ) : (
+        <form>{/* Form to post a job */}</form>
+      )}
+    </div><div className="container">
+        <form onSubmit={handleSubmit}>
+          <h2>Post a New Job</h2>
+          <label>Job Title:</label>
+          <input value={title} onChange={(e) => setTitle(e.target.value)} />
+          <label>Description:</label>
+          <textarea value={description} onChange={(e) => setDescription(e.target.value)} />
+          <label>Milestones:</label>
+          <textarea value={milestones} onChange={(e) => setMilestones(e.target.value)} />
+          <label>Payment:</label>
+          <input value={payment} onChange={(e) => setPayment(e.target.value)} />
+
+          <button type="submit">Post Job</button>
+        </form>
+      </div></>
   );
 }
 
