@@ -22,6 +22,13 @@ async function main() {
     await multiSigWallet.deployed();  // Wait until deployment is completed
     console.log("MultiSigWallet contract deployed to:", multiSigWallet.address);
 
+    // Deploy the BiometricStorage contract
+    console.log("Deploying BiometricStorage contract...");
+    const BiometricStorage = await ethers.getContractFactory("BiometricStorage");  // Fetch the contract factory for 'BiometricStorage'
+    const biometricStorage = await BiometricStorage.deploy();  // Deploy the contract
+    await biometricStorage.deployed();  // Wait until deployment is completed
+    console.log("BiometricStorage contract deployed to:", biometricStorage.address);
+
     // Optionally, you can deploy other contracts or perform interactions here
 }
 
