@@ -1,6 +1,6 @@
 // biometricUtils.js
 import Web3 from 'web3';
-import BiometricStorageABI from './abi/BiometricStorage.json';
+import BiometricStorageABI from '../abi/BiometricStorage.sol/BiometricStorage.json';
 
 const web3 = new Web3(window.ethereum);
 const contractAddress = 'YOUR_CONTRACT_ADDRESS';
