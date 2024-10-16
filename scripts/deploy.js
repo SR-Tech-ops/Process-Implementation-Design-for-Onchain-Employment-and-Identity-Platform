@@ -1,32 +1,34 @@
-// We require the Hardhat Runtime Environment explicitly here. This is optional
-// but useful for running the script in a standalone fashion through `node <script>`.
-//
-// You can also run a script with `npx hardhat run <script>`. If you do that, Hardhat
-// will compile your contracts, add the Hardhat Runtime Environment's members to the
-// global scope, and execute the script.
-const hre = require("hardhat");
+// scripts/deploy.js
+
+// Import required Hardhat tools
+const { ethers } = require("hardhat");
 
 async function main() {
-  const currentTimestampInSeconds = Math.round(Date.now() / 1000);
-  const unlockTime = currentTimestampInSeconds + 60;
+    // Get the deployer from the Hardhat network (the first account by default)
+    const [deployer] = await ethers.getSigners();
+    console.log("Deploying contracts with the account:", deployer.address);
 
-  const lockedAmount = hre.ethers.utils.parseEther("0.001");
+    // Deploy the Security contract first
+    console.log("Deploying Security contract...");
+    const Security = await ethers.getContractFactory("Security");  // Fetch the contract factory for 'Security'
+    const security = await Security.deploy();  // Deploy the contract
+    await security.deployed();  // Wait until deployment is completed
+    console.log("Security contract deployed to:", security.address);
 
-  const Lock = await hre.ethers.getContractFactory("Lock");
-  const lock = await Lock.deploy(unlockTime, { value: lockedAmount });
+    // Deploy the MultiSigWallet contract, passing the Security contract address as a parameter
+    console.log("Deploying MultiSigWallet contract...");
+    const MultiSigWallet = await ethers.getContractFactory("MultiSigWalletFactory");  // Fetch the contract factory for 'MultiSigWallet'
+    const multiSigWallet = await MultiSigWallet.deploy(security.address);  // Pass the Security contract's address
+    await multiSigWallet.deployed();  // Wait until deployment is completed
+    console.log("MultiSigWallet contract deployed to:", multiSigWallet.address);
 
-  await lock.deployed();
-
-  console.log(
-    `Lock with ${ethers.utils.formatEther(
-      lockedAmount
-    )}ETH and unlock timestamp ${unlockTime} deployed to ${lock.address}`
-  );
+    // Optionally, you can deploy other contracts or perform interactions here
 }
 
-// We recommend this pattern to be able to use async/await everywhere
-// and properly handle errors.
-main().catch((error) => {
-  console.error(error);
-  process.exitCode = 1;
-});
+// Execute the main function and handle errors
+main()
+    .then(() => process.exit(0))  // Exit the process on success
+    .catch((error) => {
+        console.error("Error during deployment:", error);  // Log the error if deployment fails
+        process.exit(1);  // Exit with failure status
+    });
