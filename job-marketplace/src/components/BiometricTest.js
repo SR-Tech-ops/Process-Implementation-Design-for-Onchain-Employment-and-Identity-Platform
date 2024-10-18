@@ -1,40 +1,34 @@
-// BiometricTest.js
 import React, { useState } from 'react';
-import { useWebAuthn } from '../utils/webAuthnUtils'; // A new helper for WebAuthn logic
-import { registerUser, verifyUser } from '../utils/biometricUtils';
+import { createCredential, getAssertion, registerWebAuthnCredential, verifyWebAuthnAssertion } from '../utils/webAuthnUtils';
 
 const BiometricTest = ({ walletAddress }) => {
-  const [biometricData, setBiometricData] = useState('');
   const [verificationResult, setVerificationResult] = useState(null);
-  const { createCredential, getAssertion } = useWebAuthn();  // WebAuthn utilities for registration/verification
 
+  // Handle biometric registration
   const handleRegister = async () => {
-    const faceImage = selectedImageFile;  // Image file selected from the user
-    const credential = await createCredential();
-    
-    const formData = new FormData();
-    formData.append('faceImage', faceImage); // Add the face image
-    formData.append('walletAddress', walletAddress); // Add wallet address
-    formData.append('credential', JSON.stringify(credential)); // Add WebAuthn credential
-  
-    // Post to server
-    const response = await fetch('http://localhost:5000/upload', {
-      method: 'POST',
-      body: formData
-    });
-  
-    const result = await response.json();
-    console.log(result);
-  }
+    try {
+      // Create WebAuthn credential (using fingerprint)
+      const credential = await createCredential(walletAddress);
+      
+      // Register credential on the server or chain (store on-chain or in a database)
+      await registerWebAuthnCredential(credential, walletAddress);
+      
+      console.log('Biometric data registered successfully');
+    } catch (error) {
+      console.error('Error during registration:', error);
+    }
+  };
 
-  // Verify biometric data
+  // Handle biometric verification (fingerprint)
   const handleVerify = async () => {
     try {
+      // Get WebAuthn assertion for biometric verification (fingerprint)
       const assertion = await getAssertion();
-      if (assertion) {
-        const isVerified = await verifyUser(assertion.id, walletAddress);
-        setVerificationResult(isVerified ? 'Verified' : 'Not Verified');
-      }
+      
+      // Verify assertion on the server or chain (verify on-chain)
+      const isVerified = await verifyWebAuthnAssertion(assertion, walletAddress);
+      
+      setVerificationResult(isVerified ? 'Verified' : 'Not Verified');
     } catch (error) {
       console.error('Error during verification:', error);
       setVerificationResult('Not Verified');

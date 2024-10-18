@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import * as faceapi from 'face-api.js';
 import { ethers } from 'ethers';
 import Webcam from 'react-webcam';
-import { createCredential } from '../utils/webAuthnUtils'; // WebAuthn utility
+import { registerWebAuthnCredential } from '../utils/webAuthnUtils'; // WebAuthn utility
 import './Home.css';
 
 const Register = ({ onLogin }) => {
@@ -14,7 +14,7 @@ const Register = ({ onLogin }) => {
   const [loading, setLoading] = useState(false);
   const webcamRef = useRef(null);
 
-  const MODEL_URL = '/models'; // Replace with the correct model path
+  const MODEL_URL = '/models'; // Path for face recognition models
 
   // Load face-api models
   useEffect(() => {
@@ -60,7 +60,7 @@ const Register = ({ onLogin }) => {
     }
   };
 
-  // Register user by pairing face image with wallet address and WebAuthn (Fingerprint)
+  // Register user with face image, wallet address, and WebAuthn (Fingerprint)
   const handleRegister = async () => {
     if (!walletAddress) {
       setError('Please connect your wallet.');
@@ -77,18 +77,18 @@ const Register = ({ onLogin }) => {
 
     try {
       // WebAuthn credential creation (for fingerprint)
-      const credential = await createCredential(); // Fingerprint credential creation
+      const credential = await registerWebAuthnCredential(walletAddress); // Fingerprint credential creation
 
-      // Fetch the image blob from the captured image
+      // Prepare image data
       const imageBlob = await fetch(capturedImage).then((res) => res.blob());
 
-      // Prepare the form data
+      // Prepare form data
       const formData = new FormData();
       formData.append('walletAddress', walletAddress);
       formData.append('faceImage', imageBlob, 'capturedImage.jpg');
       formData.append('credential', JSON.stringify(credential));  // WebAuthn credential
 
-      // Simulate registration request
+      // Send registration request
       const response = await fetch('http://localhost:5000/upload', {
         method: 'POST',
         body: formData,
