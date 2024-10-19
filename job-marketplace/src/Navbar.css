@@ -1,104 +1,119 @@
-/* Hamburger icon for mobile */
+/* Universal Styling */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background-color: #0a1e3a; /* Dark navy blue background */
+    color: #ffffff; /* White text for contrast */
+}
+
+/* Navbar Styling */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 40px;
+    background-color: #0a1e3a; /* Same navy background */
+    border-bottom: 1px solid #142952; /* Slightly lighter border for depth */
+}
+
+.logo h2 {
+    font-size: 26px;
+    font-weight: 700;
+    color: #ffffff; /* White logo text */
+}
+
+/* Navigation Links */
+.nav-links {
+    display: flex;
+    gap: 32px;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: #c9d1d9; /* Light gray text */
+    font-weight: 500;
+    padding: 10px;
+    border-radius: 6px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.nav-links a:hover {
+    background-color: #142952; /* Slightly lighter blue on hover */
+    color: #ffffff; /* White hover text */
+}
+
+/* Wallet Button */
+.wallet button {
+    background-color: #0070f3; /* Light blue button */
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 6px; /* Subtle rounded corners */
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2); /* Light shadow for depth */
+}
+
+.wallet button:hover {
+    background-color: #005bb5; /* Darker blue on hover */
+    transform: translateY(-2px); /* Subtle lift on hover */
+}
+
+.wallet p {
+    font-size: 14px;
+    color: #c9d1d9; /* Light gray text */
+    font-weight: 500;
+}
+
+/* Mobile Menu Toggle */
 .menu-toggle {
     display: none;
-    flex-direction: column;
-    cursor: pointer;
 }
 
 .hamburger {
     width: 25px;
     height: 3px;
-    background-color: #ecf0f1;
+    background-color: #ffffff; /* White hamburger icon */
     margin: 4px 0;
 }
 
-/* For mobile view */
+/* Responsive Styling */
 @media (max-width: 768px) {
     .menu-toggle {
-        display: flex;
+        display: block;
+        cursor: pointer;
     }
 
     .nav-links {
-        position: absolute;
-        top: 60px;
-        right: 0;
-        background-color: #2c3e50;
-        flex-direction: column;
-        align-items: flex-start;
-        width: 100%;
         display: none;
+        flex-direction: column;
+        gap: 16px;
+        position: absolute;
+        top: 64px;
+        right: 0;
+        background-color: #0a1e3a; /* Keep the dark navy background */
+        width: 100%;
+        padding: 20px;
+        border-top: 1px solid #142952;
+        box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.1);
     }
 
     .nav-links.open {
         display: flex;
     }
 
-    .nav-links li {
-        padding: 1rem;
-        width: 100%;
-        text-align: center;
+    .wallet {
+        display: none; /* Hide wallet button on mobile */
     }
 }
 
-/* Navbar.css */
-.navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: #2c3e50;
-    padding: 1rem 2rem;
-}
-
-.logo h2 {
-    color: #ecf0f1;
-    margin: 0;
-}
-
-.nav-links {
-    list-style: none;
-    display: flex;
-    gap: 1.5rem;
-}
-
-.nav-links li {
-    font-size: 1rem;
-}
-
-.nav-links li a {
-    color: #ecf0f1;
-    text-decoration: none;
-    transition: color 0.3s ease;
-}
-
-.nav-links li a:hover {
-    color: #f39c12;
-}
-
-.wallet button {
-    background-color: #f39c12;
-    border: none;
-    padding: 0.5rem 1rem;
-    color: #fff;
-    font-size: 1rem;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-.wallet button:hover {
-    background-color: #e67e22;
-}
-
-/* Responsive navbar */
-@media (max-width: 768px) {
-    .nav-links {
-        display: none;
-    }
-
-    .navbar {
-        justify-content: space-between;
-    }
-
-    .navbar .menu-toggle {
-        display: block;
-    }
+/* Subtle animations */
+.navbar, .nav-links a, .wallet button {
+    transition: all 0.3s ease;
 }

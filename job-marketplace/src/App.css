@@ -3,163 +3,122 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Orbitron', sans-serif;  /* Futuristic font */
-  color: #fff;
+  font-family: 'Inter', sans-serif;  /* Simple and clean font like Coinbase */
+  color: #f0f0f0;  /* Light gray text */
 }
 
 body {
-  background: linear-gradient(135deg, #1c1c1c, #101010);
+  background-color: #0a1e3a;  /* Dark navy blue, similar to Base.org */
   font-size: 16px;
   overflow-x: hidden;
+  color: #f0f0f0;  /* Light text for better readability */
 }
 
-/* Futuristic glow effects */
-.glow-text {
-  color: #0ff;
-  text-shadow: 0 0 8px rgba(0, 255, 255, 0.5), 0 0 16px rgba(0, 255, 255, 0.5);
+/* Navbar */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px 40px;
+  background-color: #0a1e3a;  /* Dark background, no glow */
+  border-bottom: 1px solid #142952;  /* Thin bottom border like Coinbase */
 }
 
-/* Neon button styles */
-.button-glow {
-  background-color: transparent;
-  border: 2px solid #0ff;
-  color: #0ff;
+.nav-links a {
+  text-decoration: none;
+  color: #c9d1d9;  /* Light gray text for a modern look */
+  padding: 10px;
+}
+
+.nav-links a:hover {
+  color: #0070f3;  /* Light blue hover effect (Coinbase style) */
+}
+
+/* Button styles - cleaner, minimal */
+button, .button-glow {
+  background-color: #0070f3;  /* Coinbase blue */
+  border: none;
+  color: #ffffff;
   padding: 10px 20px;
-  font-size: 1.2em;
+  font-size: 1em;
   text-transform: uppercase;
   cursor: pointer;
-  transition: all 0.3s ease-in-out;
-  position: relative;
-  overflow: hidden;
+  border-radius: 5px;  /* Soft rounded edges */
+  transition: background-color 0.3s ease;
 }
 
-.button-glow::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 255, 255, 0.3);
-  transition: all 0.5s ease;
-  z-index: 0;
-}
-
-.button-glow:hover::before {
-  left: 0;
-}
-
-.button-glow:hover {
-  box-shadow: 0 0 16px rgba(0, 255, 255, 0.6), 0 0 32px rgba(0, 255, 255, 0.6);
+button:hover, .button-glow:hover {
+  background-color: #005bb5;  /* Slightly darker blue on hover */
 }
 
 /* Inputs */
-input, button {
-  background: #1a1a1a;
-  border: 2px solid #333;
+input {
+  background: #0a1e3a;  /* Dark blue input background */
+  border: 1px solid #142952;  /* Thin border for subtle input styling */
   padding: 10px;
-  color: #fff;
+  color: #ffffff;
   border-radius: 5px;
-  outline: none;
 }
 
 input::placeholder {
   color: #777;
 }
 
-/* Webcam container */
-.webcam-container {
-  border: 2px solid #0ff;
-  padding: 20px;
-  margin: 20px auto;
-  border-radius: 12px;
-  background: rgba(10, 10, 10, 0.8);
-  max-width: 640px;
-  box-shadow: 0 0 16px rgba(0, 255, 255, 0.6);
-}
-
-/* Camera View */
-.webcam-view {
-  width: 100%;
-  border-radius: 8px;
-}
-
-/* Buttons */
-button {
-  font-family: 'Orbitron', sans-serif;
-  color: #0ff;
-  background: transparent;
-  border: 2px solid #0ff;
-  padding: 10px 20px;
-  text-transform: uppercase;
-  cursor: pointer;
-  transition: 0.4s;
-  position: relative;
-  overflow: hidden;
-}
-
-button:hover {
-  background: #0ff;
-  color: #000;
-}
-
-/* Neon border effect */
-.neon-border {
-  border: 2px solid #0ff;
-  border-radius: 8px;
-  padding: 20px;
-  margin: 20px 0;
-  background: rgba(10, 10, 10, 0.8);
-  box-shadow: 0 0 16px rgba(0, 255, 255, 0.6);
-}
-
-/* Hover effects for text */
-.neon-text:hover {
-  color: #fff;
-  text-shadow: 0 0 10px rgba(255, 255, 255, 0.8), 0 0 20px rgba(0, 255, 255, 1);
-  cursor: pointer;
-}
-
 /* Headings */
 h1, h2, h3 {
-  font-weight: 400;
-  text-align: center;
-  color: #0ff;
-  text-shadow: 0 0 6px rgba(0, 255, 255, 0.5), 0 0 12px rgba(0, 255, 255, 0.5);
+  font-weight: 600;
+  color: #ffffff;
   margin: 20px 0;
+  text-align: center;
 }
 
-/* Form */
+/* Form styles - minimal borders and flat design */
 form {
-  background-color: rgba(10, 10, 10, 0.8);
+  background-color: #101010;
   padding: 20px;
   border-radius: 12px;
-  border: 2px solid #0ff;
-  box-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+  border: 1px solid #142952;
+  box-shadow: none;  /* No heavy shadows */
 }
 
 input[type="submit"] {
-  background-color: #0ff;
-  color: #000;
+  background-color: #0070f3; /* Coinbase blue */
+  color: #fff;
   border: none;
   padding: 10px;
   cursor: pointer;
-  font-size: 1.2em;
 }
 
 input[type="submit"]:hover {
-  background-color: #000;
-  color: #0ff;
-  box-shadow: 0 0 16px rgba(0, 255, 255, 0.6), 0 0 32px rgba(0, 255, 255, 0.6);
+  background-color: #005bb5;
 }
 
-/* Media queries for responsiveness */
+/* Webcam Container */
+.webcam-container {
+  background-color: #101010;  /* Dark background, no glow */
+  border: 1px solid #142952;
+  padding: 20px;
+  border-radius: 12px;
+  max-width: 640px;
+  margin: 20px auto;
+}
+
+/* Responsiveness */
 @media only screen and (max-width: 768px) {
-  .webcam-container {
-    width: 90%;
+  .navbar {
+    flex-direction: column;
+    padding: 10px;
   }
 
-  button {
-    width: 100%;
+  .nav-links {
+    display: none;
+  }
+
+  .nav-links.open {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .webcam-container {
+    width: 90%;
   }
 }
