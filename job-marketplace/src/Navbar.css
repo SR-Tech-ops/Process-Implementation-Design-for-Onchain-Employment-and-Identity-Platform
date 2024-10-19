@@ -1,119 +1,132 @@
-/* Universal Styling */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Poppins', sans-serif;
-}
-
-body {
-    background-color: #0a1e3a; /* Dark navy blue background */
-    color: #ffffff; /* White text for contrast */
-}
-
-/* Navbar Styling */
 .navbar {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 20px 40px;
-    background-color: #0a1e3a; /* Same navy background */
-    border-bottom: 1px solid #142952; /* Slightly lighter border for depth */
+    padding: 10px 20px;
+    background-color: #141414;
 }
 
 .logo h2 {
-    font-size: 26px;
-    font-weight: 700;
-    color: #ffffff; /* White logo text */
+    color: #fff;
 }
 
-/* Navigation Links */
-.nav-links {
-    display: flex;
-    gap: 32px;
-}
-
-.nav-links a {
-    text-decoration: none;
-    color: #c9d1d9; /* Light gray text */
-    font-weight: 500;
-    padding: 10px;
-    border-radius: 6px;
-    transition: background-color 0.3s ease, color 0.3s ease;
-}
-
-.nav-links a:hover {
-    background-color: #142952; /* Slightly lighter blue on hover */
-    color: #ffffff; /* White hover text */
-}
-
-/* Wallet Button */
-.wallet button {
-    background-color: #0070f3; /* Light blue button */
-    color: white;
-    padding: 12px 20px;
-    border: none;
-    border-radius: 6px; /* Subtle rounded corners */
-    font-weight: 600;
-    cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.2s ease;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2); /* Light shadow for depth */
-}
-
-.wallet button:hover {
-    background-color: #005bb5; /* Darker blue on hover */
-    transform: translateY(-2px); /* Subtle lift on hover */
-}
-
-.wallet p {
-    font-size: 14px;
-    color: #c9d1d9; /* Light gray text */
-    font-weight: 500;
-}
-
-/* Mobile Menu Toggle */
 .menu-toggle {
     display: none;
+    cursor: pointer;
 }
 
 .hamburger {
     width: 25px;
     height: 3px;
-    background-color: #ffffff; /* White hamburger icon */
-    margin: 4px 0;
+    background-color: #fff;
+    margin: 5px 0;
 }
 
-/* Responsive Styling */
-@media (max-width: 768px) {
-    .menu-toggle {
-        display: block;
-        cursor: pointer;
-    }
-
-    .nav-links {
-        display: none;
-        flex-direction: column;
-        gap: 16px;
-        position: absolute;
-        top: 64px;
-        right: 0;
-        background-color: #0a1e3a; /* Keep the dark navy background */
-        width: 100%;
-        padding: 20px;
-        border-top: 1px solid #142952;
-        box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.1);
-    }
-
-    .nav-links.open {
-        display: flex;
-    }
-
-    .wallet {
-        display: none; /* Hide wallet button on mobile */
-    }
+.nav-links {
+    display: flex;
+    gap: 15px;
 }
 
-/* Subtle animations */
-.navbar, .nav-links a, .wallet button {
-    transition: all 0.3s ease;
+.nav-links.open {
+    flex-direction: column;
+}
+
+.nav-links li {
+    list-style: none;
+}
+
+.nav-links a {
+    color: #fff;
+    text-decoration: none;
+    padding: 5px 10px;
+    transition: background-color 0.3s ease;
+}
+
+.nav-links a:hover {
+    background-color: #333;
+    border-radius: 5px;
+}
+
+.wallet {
+    position: relative;
+}
+
+.wallet-btn {
+    background-color: #5a67d8;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.wallet-btn:hover {
+    background-color: #434190;
+}
+
+.wallet-address {
+    color: #fff;
+    background-color: #5a67d8;
+    padding: 10px 15px;
+    border-radius: 5px;
+}
+
+/* Modal Styles */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal {
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    width: 300px;
+}
+
+.modal h3 {
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.wallet-option-btn {
+    background-color: #5a67d8;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    margin: 10px 0;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 100%;
+}
+
+.wallet-option-btn:hover {
+    background-color: #434190;
+}
+
+.close-btn {
+    background-color: #ff4f4f;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 100%;
+}
+
+.close-btn:hover {
+    background-color: #d94141;
 }
